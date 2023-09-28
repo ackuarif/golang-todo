@@ -30,7 +30,7 @@ func main(){
 	configs.InitDatabase()
 	e := echo.New()
 	routes.InitRoutes(e)
-	e.Start(":"+os.Getenv("APP_PORT"))
+	e.Start(":"+os.Getenv("PORT"))
 }
 
 func loadEnv(){

@@ -1,0 +1,201 @@
+basePath: /
+definitions:
+  models.Response:
+    properties:
+      data: {}
+      message:
+        example: Success
+        type: string
+      status:
+        type: boolean
+    required:
+    - message
+    - status
+    type: object
+  models.ResponseFailed:
+    properties:
+      message: {}
+      status:
+        type: boolean
+    required:
+    - status
+    type: object
+  models.Todo:
+    properties:
+      date:
+        example: "2023-01-03"
+        type: string
+      id:
+        type: integer
+      todo:
+        example: This is my todo
+        type: string
+    required:
+    - date
+    - todo
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: ackuarif@gmail.com
+    name: Achmad Kumail Arif
+    url: https://github.com/ackuarif
+  description: This is a todo application.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Todo Application
+  version: "1.0"
+paths:
+  /todo:
+    get:
+      consumes:
+      - application/json
+      description: get all todo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Todo'
+                  type: array
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseFailed'
+      summary: Menampilkan semua list todo
+      tags:
+      - todo
+    post:
+      consumes:
+      - application/json
+      description: add todo
+      parameters:
+      - description: raw body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.Todo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Todo'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseFailed'
+      summary: Menambah todo
+      tags:
+      - todo
+  /todo/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete todo by id
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Todo'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseFailed'
+      summary: Merubah todo berdasarkan ID
+      tags:
+      - todo
+    get:
+      consumes:
+      - application/json
+      description: get todo by id
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Todo'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseFailed'
+      summary: Menampilkan todo berdasarkan ID
+      tags:
+      - todo
+    put:
+      consumes:
+      - application/json
+      description: update todo by id
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: raw body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.Todo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Todo'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ResponseFailed'
+      summary: Merubah todo berdasarkan ID
+      tags:
+      - todo
+swagger: "2.0"

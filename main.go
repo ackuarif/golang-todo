@@ -26,7 +26,7 @@ import (
 // @BasePath /
 
 func main(){
-	loadEnv()
+	//loadEnv()
 	configs.InitDatabase()
 	e := echo.New()
 	routes.InitRoutes(e)

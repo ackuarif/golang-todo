@@ -1,5 +1,10 @@
 ## API Todo Application (By : Achmad Kumail Arif)
-### How to Run:
+### Demo Todo Application
+```bash
+https://todoapp.osc-fr1.scalingo.io/swagger/index.html
+```
+
+### How to Run from local computer :
 1. Clone Project - 
 
 ```bash

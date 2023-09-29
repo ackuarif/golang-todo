@@ -34,7 +34,7 @@ definitions:
     - date
     - todo
     type: object
-host: localhost:8000
+host: https://todoapp.osc-fr1.scalingo.io
 info:
   contact:
     email: ackuarif@gmail.com

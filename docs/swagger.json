@@ -15,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8000",
+    "host": "https://todoapp.osc-fr1.scalingo.io",
     "basePath": "/",
     "paths": {
         "/todo": {

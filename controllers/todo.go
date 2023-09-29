@@ -120,14 +120,6 @@ func UpdateTodoController(c echo.Context) error {
 	getTodo := new(models.Todo)
 	c.Bind(&updateTodo)
 
-	validate = validator.New()
-    if validationErr := validate.Struct(updateTodo); validationErr != nil {
-		return c.JSON(http.StatusInternalServerError, models.ResponseFailed{
-			Status: false,
-			Message: "Incomplete parameter.",
-		})
-	}
-
 	result := configs.DB.Where("id = ?", c.Param("id")).First(&getTodo)
 
 	if result.Error != nil {
@@ -171,7 +163,7 @@ func DeleteTodoController(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, models.Response{
 		Status: true,
-		Message: "Success update data to database",
+		Message: "Success delete data from database",
 		Data: deleteTodo,
 	})
 }
